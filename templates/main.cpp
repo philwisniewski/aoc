@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <chrono>
 
 int main() {
-	std::ifstream file("input.txt");
+  auto start = std::chrono::high_resolution_clock::now();
+	
+  std::ifstream file("input.txt");
 
   if (!file.is_open()) {
     std::cerr << "Failed to open input.txt" << std::endl;
@@ -21,6 +24,10 @@ int main() {
 
 
   /* Solution goes above! */
+
+  auto end = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+  std::cout << "Execution time: " << duration.count() << " microseconds\n";
 
   return 0;
 }

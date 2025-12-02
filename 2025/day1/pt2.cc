@@ -1,8 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <chrono>
 
 int main() {
+  auto start = std::chrono::high_resolution_clock::now();
+
   std::ifstream file("input.txt");
 
   if (!file.is_open()) {
@@ -30,5 +33,10 @@ int main() {
   }
 
   std::cout << "Result: " << res << std::endl;
+
+  auto end = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+  std::cout << "Execution time: " << duration.count() << " microseconds" << std::endl;
+
   return 0;
 }
